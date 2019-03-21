@@ -116,24 +116,30 @@ freezercheck_setup <- function(overwrite_demo = TRUE, overwrite_data = FALSE) {
       if (!dir.exists(dir_paused))  dir.create(dir_paused)
       saveRDS(DSN, paste(dir_user, "DSN.RDS", sep = dir_sep))
       saveRDS(dir_user_df, dir_user_location)
+      cat("Step 5. Tailoring to your collection...\n")
       freezer_list <- get_freezers(DSN, dir_user)
       saveRDS(freezer_list, paste(dir_user, "freezer_list.RDS", sep = dir_sep))
       progress <- make_progress(freezer_list)
       saveRDS(progress, paste(dir_user, "progress.RDS", sep = dir_sep))
       field_list <- get_fields(DSN, dir_user)
       saveRDS(field_list, paste(dir_user, "fields.RDS", sep = dir_sep))
-      cat("Step 5. Tailoring to your staff...\n")
-      cat("\t\tPlease edit your staff list.\n\n")
+      cat("\t\tPlease edit your list of typical UDFs to identify samples...")
+      typical_UDFs <- readRDS(paste(dir_user, "typical_identifying_columns.RDS", sep = dir_sep))
+      typical_UDFs <- edit(typical_UDFs)
+      cat("Done!\n")
+      cat("\t\tPlease edit your staff list...")
       staff <- readRDS(paste(dir_user, "staff.RDS", sep = dir_sep))
       staff <- edit(staff)
       staff$names <- as.factor(staff$names)
       staff$usernames <- as.factor(staff$usernames)
       saveRDS(staff, paste(dir_user, "staff.RDS", sep = dir_sep))
+      cat("Done!\n")
       cat("NIST FreezerCheck setup for", dir_user_alias, "is complete!\n\n",
-          "Objects you may wish to tailor further include:\n",
-          "\t\tfields.RDS       | UDFs that will be available for search\n",
-          "\t\tfreezer_list.RDS | determines freezers available in this installation\n",
-          "\t\tstaff.RDS        | staff changes in this version must be made manually\n\n",
+          "Objects you may wish to review and tailor further include:_________________________________\n",
+          "\t\tfields.RDS                        | UDFs that will be available for search\n",
+          "\t\tfreezer_list.RDS                  | determines freezers available in this installation\n",
+          "\t\tstaff.RDS                         | staff changes in this version must be made manually\n",
+          "\t\ttypical_identifying_columns.RDS   | the most useful among UDFs for identifying a sample\n\n",
           "All objects for this installation are located at:\n",
           "\t\t", dir_user)
     } else {

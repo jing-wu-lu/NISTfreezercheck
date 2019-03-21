@@ -18,12 +18,7 @@ if (demo_mode) {
   progress <- read_rds("demo_progress.RDS")
   freezer_list <- read_rds("demo_freezer_list.RDS")
   staff <- read_rds("demo_staff.RDS")
-  typical_identifying_columns <- c("Common_Name",
-                                   "Species",
-                                   "Container_Type",
-                                   "Tissue_Type",
-                                   "Date_In",
-                                   "Date_Out")
+  typical_identifying_columns <- read_rds("demo_typical_identifying_columns.RDS")
 } else {
   setwd(dir_user)
   dir_pause <- paste(dir_user, "data", "paused_audits", sep = dir_sep)
@@ -36,13 +31,7 @@ if (demo_mode) {
   progress <- read_rds("progress.RDS")
   freezer_list <- get_freezers(DSN)
   staff <- read_rds("staff.RDS")
-  typical_identifying_columns <- c("Field_ID_Num",
-                                   "Common_Name",
-                                   "Species",
-                                   "Container_Type",
-                                   "Tissue_Type",
-                                   "Date_In",
-                                   "Date_Out")
+  typical_identifying_columns <- read_rds("typical_identifying_columns.RDS")
 }
 setwd(prev_wd)
 pretty_colnames <- names(audits)
