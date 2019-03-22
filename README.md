@@ -32,13 +32,17 @@ Run the demo with `freezercheck_demo()`.
 2. After installing from github, you may need to restart R in order to be able to call `library(NISTfreezercheck)`.
 3. It is suggested that you detach all packages prior to running FreezerCheck.
 4. For this version, objects powering the app (including paths to the chosen installation) are retained in the global environment when the app is closed for easy manipulation. As always, if any changes are made, write them back to the user directory as appropriate.
+5. Reinstall from scratch or add another repository at any time using `freezercheck_setup()`, see `?freezercheck_setup` for options.
+6. For this version, closing the browser tab does not close the application. FreezerCheck remains running in R (and available as a new session )
 
 ### EXPERIMENTAL
 If your repository does not use a formal database, it is theoretically possible to replace `demo_data.RDS` in the package `data/demo` directory with your repository's position records. The largest caveat to doing this is to ensure necessary headers contain the appropriate information.
-- GUALIQUOTID       |   Unique identifier for a given aliquot
-- FREEZERPHYSNAME   |   Unique identifier for a physical freezer
-- FREEZERNAME       |   (Do not delete) Can be left blank - name of a section within FREEZERPHYSNAME
-- POSITION1         |   Top level position identifier, typically a rack or tube
-- POSITION2         |   Second level position identifier, typically a box or position
-- POSITION3         |   Third level position identifier, typically a position
+| Header | Description |
+| --- | --- |
+| GUALIQUOTID | Unique identifier for a given aliquot |
+| FREEZERPHYSNAME | Unique identifier for a physical freezer |
+| FREEZERNAME | (Do not delete) Can be left blank - name of a section within FREEZERPHYSNAME |
+| POSITION1 | Top level position identifier, typically a rack or tube |
+| POSITION2 | Second level position identifier, typically a box or position |
+| POSITION3 | Third level position identifier, typically a position |
 If this is not done appropriately, FreezerCheck may not work or may behave in strange ways.
