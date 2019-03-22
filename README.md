@@ -4,20 +4,41 @@ Quality assurance and quality control (QA/QC) policies are important for any rep
 
 NIST FreezerCheck seeks to streamline the process of achieving adequate coverage of position audits (seeking 10% annual coverage) in as time-conscious a manner as possible. Though this is tailored to the NIST Biorepository, techniques employed to minimize effort while maximizing focused coverage may be of use to other repositories. For this reason, the tool was wrapped in an R package to foster communication and offer assistance to other biorepositories globally.W e chose the [Shiny](https://shiny.rstudio.com/) platform running on R for its modularity, rapid prototyping, maximum flexibility, and ease of use. Though it runs on R under the hood, the entire interface is implemented as a web application via Shiny and can be launched with a single console command. All internal functions are exposed to enable customization in other repositories. While the NIST Biorepository uses a commercial database product to track sample position and metadata which is heavily leveraged here, NIST FreezerCheck can be easily adapted to any SQL-based database. Every attempt has been made to make this tool as easy to use as possible. This is only one of several data tools under active development at NIST.
 
-### Features
+## Features
 
-- Direct connection to a database containing sample position and metadata.
-- Full featured demonstration mode for evaluation purposes.
-- Supports multiple instance installation for multi-faceted repositories.
-- Audit effort reduction and focus algorithms to achieve desired audit coverage.
-- Multiple audit-style properties to support changing goals and protocols.
-- Barcode scanning (depends on scanner availability).
-- Allows recording of discrepancies for later investigation and resolution.
-- Allows immediate resolution of discrepancies.
-- Aggregate metrics of repository position accuracy.
-- Ongoing history of all audit activities.
-- Records the time necessary to complete an audit.
-- Export of audit discrepancies to transfer data to other systems.
-- Dynamically pull sample metadata without interrupting an audit.
-- Pause an audit and continue at a later time.
+- direct connection to a database containing sample position and metadata
+- full featured demonstration mode for evaluation purposes
+- supports multiple instance installation for multi-faceted repositories
+- audit effort reduction and focus algorithms to achieve desired audit coverage
+- multiple audit style properties to support changing goals and protocols
+- barcode scanning (depends on scanner hardware availability)
+- allows recording of discrepancies for later investigation and resolution
+- allows immediate resolution of discrepancies (does not push back to your database)
+- aggregate metrics of repository position accuracy
+- ongoing history of all audit activities
+- records the time necessary to complete each audit (internal only)
+- export of audit discrepancies to transfer data to other systems
+- dynamically pull additional sample metadata without interrupting an audit
+- pause an audit and continue at a later time
 - ...and others.
+
+### Running NIST FreezerCheck
+Install from github with `devtools::install_github("jmr-nist-gov/NISTfreezercheck")`.
+After package installation, complete installation of NIST FreezerCheck using `library(NISTfreezercheck)` and follow the prompts.
+Run the demo with `freezercheck_demo()`.
+
+### Notes
+1. FreezerCheck will ensure appropriate connections and data structures exist upon being called with `library()`.
+2. After installing from github, you may need to restart R in order to be able to call `library(NISTfreezercheck)`.
+3. It is suggested that you detach all packages prior to running FreezerCheck.
+4. For this version, objects powering the app (including paths to the chosen installation) are retained in the global environment when the app is closed for easy manipulation. As always, if any changes are made, write them back to the user directory as appropriate.
+
+### EXPERIMENTAL
+If your repository does not use a formal database, it is theoretically possible to replace `demo_data.RDS` in the package `data/demo` directory with your repository's position records. The largest caveat to doing this is to ensure necessary headers contain the appropriate information.
+- GUALIQUOTID       |   Unique identifier for a given aliquot
+- FREEZERPHYSNAME   |   Unique identifier for a physical freezer
+- FREEZERNAME       |   (Do not delete) Can be left blank - name of a section within FREEZERPHYSNAME
+- POSITION1         |   Top level position identifier, typically a rack or tube
+- POSITION2         |   Second level position identifier, typically a box or position
+- POSITION3         |   Third level position identifier, typically a position
+If this is not done appropriately, FreezerCheck may not work or may behave in strange ways.
