@@ -23,8 +23,8 @@ NIST FreezerCheck seeks to streamline the process of achieving adequate coverage
 - ...and others.
 
 ### Running NIST FreezerCheck
-Install from github with `devtools::install_github("jmr-nist-gov/NISTfreezercheck")`.
-After package installation, complete installation of NIST FreezerCheck using `library(NISTfreezercheck)` and follow the prompts.
+Install from github with `devtools::install_github("jmr-nist-gov/NISTfreezercheck")`.  
+After package installation, complete installation of NIST FreezerCheck using `library(NISTfreezercheck)` and follow the prompts.  
 Run the demo with `freezercheck_demo()`.
 
 ### Notes
@@ -36,13 +36,15 @@ Run the demo with `freezercheck_demo()`.
 6. For this version, closing the browser tab does not close the application. FreezerCheck remains running in R (and available as a new session )
 
 ### EXPERIMENTAL
-If your repository does not use a formal database, it is theoretically possible to replace `demo_data.RDS` in the package `data/demo` directory with your repository's position records. The largest caveat to doing this is to ensure necessary headers contain the appropriate information.
-| Header | Description |
-| --- | --- |
-| GUALIQUOTID | Unique identifier for a given aliquot |
-| FREEZERPHYSNAME | Unique identifier for a physical freezer |
-| FREEZERNAME | (Do not delete) Can be left blank - name of a section within FREEZERPHYSNAME |
-| POSITION1 | Top level position identifier, typically a rack or tube |
-| POSITION2 | Second level position identifier, typically a box or position |
-| POSITION3 | Third level position identifier, typically a position |
-If this is not done appropriately, FreezerCheck may not work or may behave in strange ways.
+If your repository does not use a formal database, it is theoretically possible to replace `demo_data.RDS` in the package `data/demo` directory with your repository's position records. The largest caveat to doing this is to ensure necessary headers contain the appropriate information. 
+
+| Header | Description | 
+| --- | --- | 
+| GUALIQUOTID | Unique identifier for a given aliquot | 
+| FREEZERPHYSNAME | Unique identifier for a physical freezer | 
+| FREEZERNAME | (Do not delete) Can be left blank - name of a section within FREEZERPHYSNAME | 
+| POSITION1 | Top level position identifier, typically a rack or tube | 
+| POSITION2 | Second level position identifier, typically a box or position | 
+| POSITION3 | Third level position identifier, typically a position | 
+
+If this is not done appropriately, FreezerCheck may not work or may behave in strange ways. All other metadata columns are optional and should be tailored to your collection. 
