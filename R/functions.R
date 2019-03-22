@@ -85,7 +85,7 @@ freezercheck_setup <- function(overwrite_demo = TRUE, overwrite_data = FALSE) {
         dir.create(dir_user, recursive = TRUE)
       }
     } else {
-      cat("Step 3. Skipped user data setup.")
+      cat("Step 3. Skipped user data setup.\n")
     }
     cat("Step 4. Populating local data structures...\n")
     data_files <- list.files(paste(dir_pack, "data", sep = dir_sep),
@@ -133,7 +133,7 @@ freezercheck_setup <- function(overwrite_demo = TRUE, overwrite_data = FALSE) {
       staff$names <- as.factor(staff$names)
       staff$usernames <- as.factor(staff$usernames)
       saveRDS(staff, paste(dir_user, "staff.RDS", sep = dir_sep))
-      cat("Done!\n")
+      cat("Done!\n\n")
       cat("NIST FreezerCheck setup for", dir_user_alias, "is complete!\n\n",
           "Objects you may wish to review and tailor further include:_________________________________\n",
           "\t\tfields.RDS                        | UDFs that will be available for search\n",
