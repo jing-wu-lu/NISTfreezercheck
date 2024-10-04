@@ -3,7 +3,7 @@ jscode <- "shinyjs.focus = function(e_id) {document.getElementById(e_id).focus()
 
 ui <- dashboardPage(
   # Header -------------------------------------------------------------------------------------
-  header <- dashboardHeaderPlus(
+  header <- dashboardHeader(
     title = span(icon('check-circle'), "FreezerCheck"), 
     titleWidth = bar_width
   ),
